@@ -2,6 +2,7 @@
 "use client";
 
 import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 
 export default function HomePage() {
   const { data: session, status } = useSession();
@@ -11,7 +12,7 @@ export default function HomePage() {
     return <p className="p-4">Loading…</p>;
   }
 
-  // If the user is signed in, show a welcome message + sign-out
+  // If the user is signed in, show a welcome message + sign-out + chat link
   if (session) {
     return (
       <div className="flex flex-col items-center justify-center h-screen space-y-4">
@@ -24,13 +25,12 @@ export default function HomePage() {
         >
           Sign out
         </button>
-        {/* Link to your chat page */}
-        <a
+        <Link
           href="/chat"
           className="mt-4 px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600"
         >
           Go to Chat
-        </a>
+        </Link>
       </div>
     );
   }
